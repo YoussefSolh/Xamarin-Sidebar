@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0-ios</TargetFrameworks>
+    <TargetFrameworks>net9.0-ios</TargetFrameworks>
     <AssemblyName>SidebarNavigation</AssemblyName>
     <RootNamespace>SidebarNavigation</RootNamespace>
     <Description>Sidebar navigation for Xamarin.iOS</Description>
     <PackageId>SidebarNavigation</PackageId>
 
-    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">13.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

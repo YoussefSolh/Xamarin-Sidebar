@@ -5,7 +5,7 @@ using Xamarin.UITest;
 using Xamarin.UITest.iOS;
 using Xamarin.UITest.Queries;
 using System.Threading;
-using Xunit;
+using NUnit.Framework;
 
 namespace UITests
 {
@@ -24,7 +24,7 @@ namespace UITests
 		AppQuery MenuIntroButton(AppQuery app) { return app.Button("Intro"); }
 		AppQuery MenuContentButton(AppQuery app) { return app.Button("Content"); }
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void BeforeAnyTests() {
 			// TODO: If the iOS app being tested is included in the solution then open
 			// the Unit Tests window, right click Test Apps, select Add App Project
@@ -58,7 +58,7 @@ namespace UITests
 		public void CanOpenSideMenuWithSlide()
 		{
 			AssertMenuClosed();
-			app.DragCoordinates(15, 50, 305, 50, TimeSpan.FromMilliseconds(1400));
+			app.DragCoordinates(15, 50, 305, 50, TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(1400));
 			AssertMenuOpen();
 		}
 
@@ -78,7 +78,7 @@ namespace UITests
 			AssertMenuClosed();
 			app.Tap(ToggleButton);
 			AssertMenuOpen();
-			app.DragCoordinates(305, 50, 15, 50, TimeSpan.FromMilliseconds(1000));
+			app.DragCoordinates(305, 50, 15, 50, TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(1000));
 			AssertMenuClosed();
 		}
 
@@ -86,7 +86,7 @@ namespace UITests
 		public void CanOpenMenuWithFlick()
 		{
 			AssertMenuClosed();
-			app.DragCoordinates(15, 50, 250, 50, TimeSpan.FromMilliseconds(1000));
+			app.DragCoordinates(15, 50, 250, 50, TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(1000));
 			AssertMenuOpen();
 		}
 
@@ -96,7 +96,7 @@ namespace UITests
 			AssertMenuClosed();
 			app.Tap(ToggleButton);
 			AssertMenuOpen();
-			app.DragCoordinates(305, 50, 200, 50, TimeSpan.FromMilliseconds(800));
+			app.DragCoordinates(305, 50, 200, 50, TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(800));
 			AssertMenuClosed();
 		}
 
@@ -114,11 +114,11 @@ namespace UITests
 
 
 		private void AssertMenuOpen() {
-			Assert.Equal(310, app.Query(ToggleButton).First().Rect.X);
+			Assert.AreEqual(310, app.Query(ToggleButton).First().Rect.X);
 		}
 
 		private void AssertMenuClosed() {
-			Assert.Equal(50, app.Query(ToggleButton).First().Rect.X);
+			Assert.AreEqual(50, app.Query(ToggleButton).First().Rect.X);
 		}
 	}
 }
